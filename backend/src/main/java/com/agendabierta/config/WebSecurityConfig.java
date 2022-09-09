@@ -16,14 +16,13 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors()
+                .csrf().disable()
+                .authorizeRequests()
+                .anyRequest().permitAll()
                 .and()
-                .csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .antMatchers().permitAll();
+                .httpBasic();
 
         return http.build();
     }
