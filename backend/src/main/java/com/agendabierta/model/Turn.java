@@ -18,8 +18,13 @@ public class Turn {
     @Column(name = "turn_id")
     private Long id;
     private Date date;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_id", referencedColumnName = "businessId")
     private Business business;
+    @OneToOne(mappedBy = "turn")
     private BusinessService service;
 
 }

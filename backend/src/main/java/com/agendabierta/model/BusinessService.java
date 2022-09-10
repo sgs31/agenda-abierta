@@ -18,5 +18,7 @@ public class BusinessService {
     private String name;
     private Integer cost;
     private String description;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_id", referencedColumnName = "businessId")
     private Business business;
 }
