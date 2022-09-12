@@ -18,9 +18,9 @@ public class BusinessService {
     private Integer cost;
     private String description;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "business_id", referencedColumnName = "businessId")
+    @JoinColumn(name = "business_id")
     private Business business;
     @OneToOne
-    @JoinColumn(name = "turn_id", referencedColumnName = "turn_id")
+    @JoinColumn(name = "turn_id")
     private Turn turn;
 }

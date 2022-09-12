@@ -20,6 +20,6 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Turn> turns;
 }

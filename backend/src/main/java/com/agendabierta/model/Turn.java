@@ -17,11 +17,11 @@ public class Turn {
     @Column(name = "turn_id")
     private Long id;
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "business_id", referencedColumnName = "businessId")
+    @JoinColumn(name = "business_id")
     private Business business;
     @OneToOne(mappedBy = "turn")
     private BusinessService service;

@@ -1,5 +1,7 @@
 package com.agendabierta.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +18,8 @@ public class Business {
     private Long businessId;
     @Column(unique = true)
     private String name;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "business")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<Turn> turns;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "business")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<BusinessService> services;
 }
