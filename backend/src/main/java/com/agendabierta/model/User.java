@@ -12,8 +12,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id")
     private Long userId;
     @Column(unique = true)
@@ -21,7 +20,6 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "user")
     private List<Turn> turns;
 }

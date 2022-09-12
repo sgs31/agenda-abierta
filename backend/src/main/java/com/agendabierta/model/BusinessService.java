@@ -2,7 +2,6 @@ package com.agendabierta.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 
@@ -18,7 +17,10 @@ public class BusinessService {
     private String name;
     private Integer cost;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "business_id", referencedColumnName = "businessId")
     private Business business;
+    @OneToOne
+    @JoinColumn(name = "turn_id", referencedColumnName = "turn_id")
+    private Turn turn;
 }
