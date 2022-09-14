@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService implements IUserService{
 
@@ -17,39 +19,34 @@ public class UserService implements IUserService{
     PasswordEncoder passwordEncoder;
 
     @Override
-    public ResponseEntity registerUser(User user) {
+    public User registerUser(User user) {
         User newUser = new User();
         newUser.setEmail(user.getEmail());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         try{
-            return ResponseEntity.ok(userRepository.save(newUser));
+            return userRepository.save(newUser);
         }catch(Error err) {
             err.printStackTrace();
-            return ResponseEntity.status(500).body("Ya existe un usuario con ese email");
+            return null;
         }
     }
 
     @Override
-    public ResponseEntity<User> getUser(String email) {
-        try{
-            User user = userRepository.findByEmail(email);
-            if(user == null) return ResponseEntity.notFound().build();
-            else return ResponseEntity.ok(user);
-        }catch(Error err){
-            return ResponseEntity.internalServerError().build();
-        }
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override
-    public ResponseEntity<User> updateUser(User user) {
-        if(userRepository.findByEmail(user.getEmail()) != null){
-            User userChanged = userRepository.save(user);
-            return ResponseEntity.ok(userRepository.save(userChanged));
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+    public User getUser(String email) {
+        User user = userRepository.findByEmail(email);
+        return user;
     }
 
+    @Override
+    public User updateUser(User user) {
+        User userChanged = userRepository.save(user);
+        return userChanged;
+    }
     @Override
     public void deleteUser(String email) {
         try{
