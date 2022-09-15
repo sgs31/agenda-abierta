@@ -1,7 +1,6 @@
 package com.agendabierta.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,9 +16,10 @@ public class Business {
     @Column(name = "business_id")
     private Long businessId;
     @Column(unique = true)
+    @NotNull
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<Turn> turns;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
-    private List<BusinessService> services;
+    private List<Job> jobs;
 }

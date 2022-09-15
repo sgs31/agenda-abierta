@@ -1,5 +1,6 @@
 package com.agendabierta.model;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +17,13 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
     @Column(unique = true)
+    @NotNull
     private String username;
     @Column(unique = true)
+    @NotNull
     private String email;
+    @NotNull
+    @Column(length = 8)
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Turn> turns;
