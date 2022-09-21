@@ -1,4 +1,4 @@
-package com.agendabierta.model;
+package com.agendabierta.infrastructure.data.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name = "jobs")
-public class Job {
+public class JobEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "job_id")
@@ -23,8 +23,8 @@ public class Job {
     private String description;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "business_id")
-    private Business business;
+    private BusinessEntity business;
     @OneToOne
     @JoinColumn(name = "turn_id")
-    private Turn turn;
+    private TurnEntity turn;
 }

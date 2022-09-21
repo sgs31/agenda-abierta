@@ -1,4 +1,4 @@
-package com.agendabierta.model;
+package com.agendabierta.infrastructure.data.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "turns")
-public class Turn {
+public class TurnEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -21,11 +21,11 @@ public class Turn {
     private Date date;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "business_id")
-    private Business business;
+    private BusinessEntity business;
     @OneToOne(mappedBy = "turn")
-    private Job job;
+    private JobEntity job;
 
 }

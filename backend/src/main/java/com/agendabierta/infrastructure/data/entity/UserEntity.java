@@ -1,4 +1,4 @@
-package com.agendabierta.model;
+package com.agendabierta.infrastructure.data.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id")
@@ -26,5 +26,5 @@ public class User {
     @Column(length = 8)
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Turn> turns;
+    private List<TurnEntity> turns;
 }

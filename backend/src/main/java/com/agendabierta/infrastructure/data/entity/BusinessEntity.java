@@ -1,4 +1,4 @@
-package com.agendabierta.model;
+package com.agendabierta.infrastructure.data.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -10,7 +10,8 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Business {
+@Table(name = "business")
+public class BusinessEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "business_id")
@@ -19,7 +20,7 @@ public class Business {
     @NotNull
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
-    private List<Turn> turns;
+    private List<TurnEntity> turns;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
-    private List<Job> jobs;
+    private List<JobEntity> jobs;
 }
