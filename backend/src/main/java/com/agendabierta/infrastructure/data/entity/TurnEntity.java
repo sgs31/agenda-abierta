@@ -1,8 +1,11 @@
 package com.agendabierta.infrastructure.data.entity;
 
+import com.agendabierta.domain.model.Turn;
+import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,6 +20,7 @@ public class TurnEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "turn_id")
     private Long id;
+    @Temporal(TemporalType.DATE)
     @NotNull
     private Date date;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -27,5 +31,9 @@ public class TurnEntity {
     private BusinessEntity business;
     @OneToOne(mappedBy = "turn")
     private JobEntity job;
+
+    public TurnEntity(Turn turn){
+        BeanUtils.copyProperties(turn, this);
+    }
 
 }
