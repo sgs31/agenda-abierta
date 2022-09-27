@@ -1,8 +1,10 @@
 package com.agendabierta.infrastructure.data.entity;
 
+import com.agendabierta.domain.model.User;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,4 +29,14 @@ public class UserEntity {
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TurnEntity> turns;
+
+    public UserEntity(User user){
+        BeanUtils.copyProperties(user, this);
+    }
+
+    public User toModel(){
+        User user = User.builder().build();
+        BeanUtils.copyProperties(this, user);
+        return user;
+    }
 }

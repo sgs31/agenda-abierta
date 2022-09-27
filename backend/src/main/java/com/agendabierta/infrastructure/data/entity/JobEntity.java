@@ -1,8 +1,10 @@
 package com.agendabierta.infrastructure.data.entity;
 
+import com.agendabierta.domain.model.Job;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 
@@ -27,4 +29,10 @@ public class JobEntity {
     @OneToOne
     @JoinColumn(name = "turn_id")
     private TurnEntity turn;
+
+    public Job toModel(){
+        Job job = new Job();
+        BeanUtils.copyProperties(this, job);
+        return job;
+    }
 }

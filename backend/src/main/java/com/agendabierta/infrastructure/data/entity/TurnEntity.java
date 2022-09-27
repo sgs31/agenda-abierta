@@ -36,4 +36,10 @@ public class TurnEntity {
         BeanUtils.copyProperties(turn, this);
     }
 
+    public Turn toModel(){
+        Turn turn = Turn.builder().build();
+        BeanUtils.copyProperties(this, turn);
+        return turn;
+    }
+
 }

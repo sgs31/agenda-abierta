@@ -1,5 +1,6 @@
 package com.agendabierta.domain.model;
 
+import com.agendabierta.infrastructure.data.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 
