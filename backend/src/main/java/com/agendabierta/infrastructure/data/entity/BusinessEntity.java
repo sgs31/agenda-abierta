@@ -26,6 +26,10 @@ public class BusinessEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<JobEntity> jobs;
 
+    public BusinessEntity(Business business){
+        BeanUtils.copyProperties(business, this);
+    }
+
     public Business toModel(){
         Business business = Business.builder().build();
         BeanUtils.copyProperties(this, business);

@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 
@@ -29,6 +30,10 @@ public class JobEntity {
     @OneToOne
     @JoinColumn(name = "turn_id")
     private TurnEntity turn;
+
+    public JobEntity(Job job){
+        BeanUtils.copyProperties(job, this);
+    }
 
     public Job toModel(){
         Job job = new Job();
