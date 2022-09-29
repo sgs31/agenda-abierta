@@ -29,6 +29,8 @@ public class UserEntity {
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TurnEntity> turns;
+    @OneToOne(mappedBy = "owner")
+    private BusinessEntity business;
 
     public UserEntity(User user){
         BeanUtils.copyProperties(user, this);

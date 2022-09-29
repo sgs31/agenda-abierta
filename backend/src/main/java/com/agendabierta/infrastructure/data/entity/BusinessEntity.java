@@ -21,6 +21,9 @@ public class BusinessEntity {
     @Column(unique = true)
     @NotNull
     private String name;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity owner;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")
     private List<TurnEntity> turns;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "business")

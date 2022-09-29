@@ -7,7 +7,11 @@ import com.agendabierta.infrastructure.data.entity.JobEntity;
 import com.agendabierta.infrastructure.data.repository.BusinessRepository;
 import com.agendabierta.infrastructure.data.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class BusinessServiceImp implements BusinessService{
     @Autowired
     BusinessRepository businessRepository;
@@ -27,5 +31,10 @@ public class BusinessServiceImp implements BusinessService{
     @Override
     public void deleteJobInBusiness(Long jobId) {
         jobRepository.deleteById(jobId);
+    }
+
+    @Override
+    public List<JobEntity> getAllJobs() {
+        return jobRepository.findAll();
     }
 }

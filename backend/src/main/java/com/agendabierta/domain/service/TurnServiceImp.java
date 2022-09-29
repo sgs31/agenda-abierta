@@ -12,12 +12,14 @@ import com.agendabierta.infrastructure.data.repository.TurnRepository;
 import com.agendabierta.infrastructure.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+@Service
 public class TurnServiceImp implements TurnService{
     @Autowired
     private TurnRepository turnRepository;

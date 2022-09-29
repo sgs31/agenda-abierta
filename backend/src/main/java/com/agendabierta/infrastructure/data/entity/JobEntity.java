@@ -36,7 +36,7 @@ public class JobEntity {
     }
 
     public Job toModel(){
-        Job job = new Job();
+        Job job = Job.builder().build();
         BeanUtils.copyProperties(this, job);
         return job;
     }
